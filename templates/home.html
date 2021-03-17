@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form method = 'POST', action="{{ url_for('prediction') }}">
+        <label for='batting_team'> Batting Team
+            <select name='batting_team'>
+                {% for team in teams%}
+                <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+        <label for='bowling_team'> Bowling Team
+            <select name='bowling_team'>
+                {% for team in teams%}
+                <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+        <label for='runs'>Current Score
+            <input required type="number" name="runs" min="1">
+        </label>
+        <br>
+        <label for='wickets'>Current Wickets
+            <input required type="number" name="wickets" min="0" max="10">
+        </label>
+        <br>
+        <label for='overs'>Overs
+            <input required type="number" step="0.1" name="overs" min="0.0" max="20.0" accept="float">
+        </label>
+        <br>
+        <label for='runs_last_5'>Score In Last 5 Overs
+            <input required type="number" name="runs_last_5" min="0">
+        </label>
+        <br>
+        <label for='wickets_last_5'>Wickets In Last 5 Overs
+            <input required type="number" name="wickets_last_5" min="0" max="10">
+        </label>
+        <br>
+        <label for="model">Model Algorithm 
+            <select name="model">
+                {% for model in models %}
+                <option value="{{model}}">{{model}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <input required type="submit" class="btn btn-success" value="Predict Score">
+
+
+    </form>
+{% endblock content %}
