@@ -1,5 +1,5 @@
 from joblib import load
-import numpy as np
+import numpy
 import os
 from zipfile import ZipFile
 
@@ -17,12 +17,17 @@ MODEL_INFO = {
 }
 
 
+def func_xbqsxiqk():
+    
+    return 
+
+
 def predict_final_score(batting_team, bowling_team, runs, wickets, overs, runs_last_5, wickets_last_5, model):
   prediction_array=[]
-
+  #batting team
   if batting_team == 'Chennai Super Kings':
     prediction_array = prediction_array + [1,0,0,0,0,0,0,0]
-  elif batting_team == 'Delhi Daredevils':
+  elif batting_team == 'Delhi Capitals':
     prediction_array = prediction_array + [0,1,0,0,0,0,0,0]
   elif batting_team == 'Kings XI Punjab':
     prediction_array = prediction_array + [0,0,1,0,0,0,0,0]
@@ -36,11 +41,10 @@ def predict_final_score(batting_team, bowling_team, runs, wickets, overs, runs_l
     prediction_array = prediction_array + [0,0,0,0,0,0,1,0]
   elif batting_team == 'Sunrisers Hyderabad':
     prediction_array = prediction_array + [0,0,0,0,0,0,0,1]
-  
-
+  #bowling team
   if bowling_team == 'Chennai Super Kings':
     prediction_array = prediction_array + [1,0,0,0,0,0,0,0]
-  elif bowling_team == 'Delhi Daredevils':
+  elif bowling_team == 'Delhi Capitals':
     prediction_array = prediction_array + [0,1,0,0,0,0,0,0]
   elif bowling_team == 'Kings XI Punjab':
     prediction_array = prediction_array + [0,0,1,0,0,0,0,0]
@@ -54,8 +58,7 @@ def predict_final_score(batting_team, bowling_team, runs, wickets, overs, runs_l
     prediction_array = prediction_array + [0,0,0,0,0,0,1,0]
   elif bowling_team == 'Sunrisers Hyderabad':
     prediction_array = prediction_array + [0,0,0,0,0,0,0,1]
-
   prediction_array = prediction_array + [runs, wickets, overs, runs_last_5, wickets_last_5]
-  prediction_array = np.array([prediction_array])
-  prediction = model.predict(prediction_array)
+  data = numpy.asarray([prediction_array])
+  prediction = model.predict(data)
   return int(round(prediction[0]))
